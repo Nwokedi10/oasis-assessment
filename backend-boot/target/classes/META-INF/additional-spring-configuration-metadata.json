@@ -1,0 +1,32 @@
+{"properties": [
+  {
+    "name": "app.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'app.jwtSecret'"
+  },
+  {
+    "name": "app.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'app.jwtSecret'"
+  },
+  {
+    "name": "app.jwtExpirationInMs",
+    "type": "java.lang.String",
+    "description": "A description for 'app.jwtExpirationInMs'"
+  },
+  {
+    "name": "application.security.jwt.secret-key",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.secret-key'"
+  },
+  {
+    "name": "application.security.jwt.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.expiration'"
+  },
+  {
+    "name": "application.security.jwt.refresh-token.expiration",
+    "type": "java.lang.String",
+    "description": "A description for 'application.security.jwt.refresh-token.expiration'"
+  }
+]}
