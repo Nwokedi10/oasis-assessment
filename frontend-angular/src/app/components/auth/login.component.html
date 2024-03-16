@@ -1,0 +1,36 @@
+<div class="background-image">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="mb-32">Oasis Portal Login </h4>
+        <form [formGroup]="loginForm" >
+  
+          <mat-form-field class="w-100 fs-16" appearance="outline">
+            <mat-label>Email</mat-label>
+            <input matInput type="email" formControlName="emailAddress" placeholder="Enter your email">
+          </mat-form-field>
+  
+          <mat-form-field class="w-100 fs-16" appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password" placeholder="Enter your password" [type]="hide ? 'password' : 'text'" #passwordInput>
+            <button mat-icon-button matSuffix (click)="togglePasswordVisibility(passwordInput)">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
+                <path fill="currentColor" d="M12 15.5a3.499 3.499 0 0 1-3.499-3.499 3.499 3.499 0 0 1 3.499-3.499 3.499 3.499 0 0 1 3.499 3.499A3.499 3.499 0 0 1 12 15.5zm0-5a1.5 1.5 0 0 0-1.499 1.499A1.5 1.5 0 0 0 12 13.5a1.5 1.5 0 0 0 1.499-1.499A1.5 1.5 0 0 0 12 10.5z" [style.display]="hide ? 'none' : 'inline'"/>
+                <path fill="currentColor" d="M12 8.5a1.5 1.5 0 0 0-1.499 1.499A1.5 1.5 0 0 0 12 11.5a1.5 1.5 0 0 0 1.499-1.499A1.5 1.5 0 0 0 12 8.5zm0 7a1.5 1.5 0 0 0-1.499 1.499A1.5 1.5 0 0 0 12 17.5a1.5 1.5 0 0 0 1.499-1.499A1.5 1.5 0 0 0 12 15.5zm0-5a3.499 3.499 0 0 1-3.499 3.499 3.499 3.499 0 0 1-3.499-3.499A3.499 3.499 0 0 1 12 10.5z" [style.display]="hide ? 'inline' : 'none'"/>
+              </svg>
+            </button>
+          </mat-form-field>
+          <p class="forgot-password"><a href="/forgot">Forgot Password?</a></p>
+          
+  
+          <div class="alert alert-border-danger alert-text-danger background-none d-flex fs-14 align-items-center rounded mb-16 alert-margin" role="alert"  *ngIf="failedLogin">
+            {{ 'Oops, ' + errorType + '.' }}
+          </div>
+
+          <button mat-raised-button class="me-8 mb-8" color="primary" (click)="onProcessLogin()" type="submit">SUBMIT</button>
+        </form>
+        <br>
+        <p class="form-register">Do not have an account yet? <a href="/register">Sign Up</a></p>
+      </div>
+    </div>
+</div>
+  

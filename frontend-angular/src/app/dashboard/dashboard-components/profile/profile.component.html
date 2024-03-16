@@ -1,0 +1,38 @@
+<mat-card>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <mat-card-content>
+        <mat-card-title>Edit Profile</mat-card-title>
+        <mat-card-subtitle>Hey {{ user.fullName }}, please edit your profile here.</mat-card-subtitle>
+  
+        <mat-form-field class="w-100 fs-16" appearance="outline">
+            <mat-label>Full Name</mat-label>
+            <input matInput placeholder="Update Full Name" [(ngModel)]="user.fullName" value="user[0].fullname" formControlName="fullName">
+          </mat-form-field>
+
+          <mat-form-field class="w-100 fs-16" appearance="outline">
+            <mat-label>Email Address</mat-label>
+            <input matInput placeholder="Update Email Address" [(ngModel)]="user.emailAddress" [disabled]="true" formControlName="emailAddress">
+          </mat-form-field>
+
+      </mat-card-content>
+  
+      <mat-card *ngIf="submittingTask">
+        <mat-card-content>
+          <mat-card-title>Updating Profile</mat-card-title>
+          <mat-card-subtitle>Your profile is being updated, please wait...</mat-card-subtitle>
+          <mat-progress-bar mode="query"></mat-progress-bar>
+        </mat-card-content>
+      </mat-card>
+
+      <div class="alert alert-border-warning alert-text-warning background-none d-flex fs-14 align-items-center rounded mb-16 alert-margin" role="alert" *ngIf="failedTask">
+        {{ 'Oops, ' + errorType + '.' }}
+      </div>
+  
+      <div class="alert alert-border-success alert-text-success background-none d-flex fs-14 align-items-center rounded mb-16 alert-margin" role="alert" *ngIf="successTask">
+        Great!, profile updated successfully.
+      </div>
+  
+      <button mat-raised-button color="primary" type="submit" class="adjust" [disabled]="submittingTask">Update Profile</button>
+    </form>
+  </mat-card>
+  

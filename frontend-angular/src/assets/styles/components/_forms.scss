@@ -1,0 +1,56 @@
+.mat-checkbox-inner-container {
+    width: 18px !important;
+    height: 18px !important;
+}
+
+.background-image {
+  background-image: url('../../images/oasisbg.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(50px);
+}
+  
+.background-image2 {
+  background-image: url('../../images/oasisbg.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(50px);
+}
+  
+  .card {
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 10px;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .card {
+      padding: 20px;
+      margin: 40px;
+    }
+  }
+  .forgot-password {
+    float: right;
+  }
+  
+  .forgot-password a {
+    text-decoration: underline;
+  }
+  .form-register a {
+    text-decoration: underline;
+  }
+  .form-terms {
+    font-size: 0.7em;
+  }
+  
+  .form-terms a {
+    text-decoration: underline;
+  }
+  

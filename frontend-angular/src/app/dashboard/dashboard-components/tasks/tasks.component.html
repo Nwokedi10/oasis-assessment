@@ -1,0 +1,86 @@
+<mat-card class="w-100">
+  <mat-card-content>
+    <h4 class="mb-56">My Tasks <br> <small *ngIf="dataSource && dataSource.data.length > 0">Please click on priority button to modify tasks.</small></h4>
+    
+    
+    <div class="sort-dropdowns"  *ngIf="dataSource && dataSource.data.length > 0">
+      
+    <div>
+  <mat-form-field>
+    <mat-label>Choose Category</mat-label>
+    <mat-select (selectionChange)="sortData($event.value)">
+      <mat-option *ngFor="let category of myCategories" [value]="category">{{ category }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+
+    
+      <mat-form-field appearance="fill">
+        <mat-label>Sort by Due Date</mat-label>
+        <mat-select (selectionChange)="sortData($event.value)">
+          <mat-option value="asc">Ascending</mat-option>
+          <mat-option value="desc">Descending</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Sort by Priority</mat-label>
+        <mat-select (selectionChange)="sortData($event.value)">
+          <mat-option value="priorityAsc">Low to High</mat-option>
+          <mat-option value="priorityDesc">High to Low</mat-option>
+        </mat-select>
+      </mat-form-field>
+      
+      <mat-form-field appearance="fill">
+        <mat-label>Sort by Status</mat-label>
+        <mat-select (selectionChange)="sortData($event.value)">
+          <mat-option value="statusAsc">Low to High</mat-option>
+          <mat-option value="statusDesc">High to Low</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="table-responsive"  *ngIf="dataSource && dataSource.data.length > 0">
+      <table mat-table [dataSource]="dataSource" class="text-nowrap w-100" matSort>
+
+        <ng-container matColumnDef="title">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Title </th>
+          <td mat-cell *matCellDef="let element">{{ element.title }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef> Description </th>
+          <td mat-cell *matCellDef="let element">{{ element.description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="priority">
+          <th mat-header-cell *matHeaderCellDef> Priority </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="button-row d-flex flex-wrap mb-24">
+              <button mat-raised-button class="me-8 mb-8" [color]="getColor(element.priority)" matTooltip="Edit Task" (click)="editTask(element)">
+                {{ element.priority }}
+              </button>
+            </div>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dueDate">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Deadline </th>
+          <td mat-cell *matCellDef="let element">{{ element.formattedDueDate }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+          <td mat-cell *matCellDef="let element">{{ element.completed ? 'Completed' : 'Pending' }}</td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+    </div>
+
+    <div *ngIf="dataSource && dataSource.data.length == 0" class="text-center">
+      <p>You do not have any tasks yet. Please create a new task <a href="/home" style="color: darkviolet;">here</a></p>
+    </div>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,30 @@
+.adjust {
+    margin-bottom: 40px;
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+
+  .alert-margin {
+    margin-right: 40px;
+    margin-left: 40px;
+  }
+
+  .form-date {
+    margin-bottom: 1rem;
+  }
+  
+  .form-date label {
+    display: block;
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-date input[type="datetime-local"] {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 1rem;
+    line-height: 2.5;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+  }
+  
+  

@@ -1,0 +1,94 @@
+
+<mat-card>
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <mat-card-title>Create Task</mat-card-title>
+      <mat-card-subtitle>Hey {{ user.fullName }}, you can create a new task here.</mat-card-subtitle>
+  
+      <mat-form-field class="w-100 fs-16" appearance="outline">
+        <mat-label>Task Title</mat-label>
+        <input matInput placeholder="Enter task title"  formControlName="title">
+      </mat-form-field>
+  
+      <mat-form-field class="demo-chip-list">
+        <mat-label>Category</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Enter categories">
+          <mat-chip-row *ngFor="let category of categories" (removed)="remove(category)" [editable]="true"
+            (edited)="edit(category, $event)" [aria-description]="'press enter to edit ' + category.name">
+            {{category.name}}
+            <button matChipRemove [attr.aria-label]="'remove ' + category.name">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+          <input placeholder="New category..." [matChipInputFor]="chipGrid"
+            [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+            (matChipInputTokenEnd)="add($event)"  formControlName="category" />
+        </mat-chip-grid>
+      </mat-form-field>
+  
+      <mat-form-field class="w-100 fs-16" appearance="outline">
+        <mat-label>Task Description</mat-label>
+        <textarea matInput placeholder="Enter task description" formControlName="description"></textarea>
+      </mat-form-field>
+      
+      <div class="form-date">
+        <label for="datetime">Due Date</label>
+        <input type="datetime-local" id="datetime" formControlName="dueDate" class="form-control" [min]="getCurrentDateTime()">
+      </div>
+  
+      <mat-form-field class="w-100 fs-16" appearance="outline">
+        <mat-label>Priority</mat-label>
+        <mat-select formControlName="priority">
+          <mat-option value="None">None</mat-option>
+          <mat-option value="Low">Low</mat-option>
+          <mat-option value="Medium">Medium</mat-option>
+          <mat-option value="High">High</mat-option>
+          <mat-option value="Critical">Critical</mat-option>
+        </mat-select>
+      </mat-form-field>
+  
+      <mat-form-field class="w-100 fs-16" appearance="outline">
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="false">Pending</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+    </mat-card-content>
+    <mat-card *ngIf="submittingTask">
+      <mat-card-content>
+        <mat-card-title>Creating Task</mat-card-title>
+        <mat-card-subtitle>Your task is being uploaded to the your portal, please wait...</mat-card-subtitle>
+        <mat-progress-bar mode="query"></mat-progress-bar>
+      </mat-card-content>
+    </mat-card>
+
+    
+    <div
+    class="alert alert-border-warning alert-text-warning background-none d-flex fs-14 align-items-center rounded mb-16 alert-margin"
+    role="alert" *ngIf="failedTask">
+    Oops, please fill all form fields.
+  </div>
+
+  <div
+    class="alert alert-border-success alert-text-success background-none d-flex fs-14 align-items-center rounded mb-16 alert-margin"
+    role="alert"  *ngIf="successTask">
+    Great!, task added successfully.
+  </div>
+    
+    <button mat-raised-button color="primary" type="submit" class="adjust" [disabled]="submittingTask">Create Task</button>
+
+  </form>
+  
+</mat-card>
+
+<div>
+  <div class="row">
+    <div class="col-lg-4">
+      <app-reminder></app-reminder>
+    </div>
+    <div class="col-lg-8">
+      <app-tasks></app-tasks>
+    </div>
+  </div>
+</div>

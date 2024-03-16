@@ -1,0 +1,19 @@
+<div class="background-image2">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="mb-32">Forgot Password </h4>
+        <form>
+            <p>Password reset link will be sent to your email address.</p>
+            <mat-form-field class="w-100 fs-16" appearance="outline">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" placeholder="Enter your email">
+              </mat-form-field>
+
+          <button mat-raised-button class="me-8 mb-8" color="primary" (click)="onProcessForgot()" type="submit">GET RESET LINK</button>
+        </form>
+        <br>
+        <p class="forgot-password">Already have an account? <a href="/login">Login</a></p>
+      </div>
+    </div>
+</div>
+  
